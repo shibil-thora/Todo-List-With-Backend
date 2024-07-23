@@ -1,14 +1,13 @@
 from django.db import models
 
 
-class Product(models.Model): 
+class ToDo(models.Model): 
     name = models.CharField(max_length=1000) 
-    product_code = models.CharField(max_length=50) 
-    price = models.DecimalField(max_digits=20, decimal_places=2, null=True)
-    stock = models.IntegerField() 
-    image = models.ImageField(upload_to='product_image') 
+    date = models.DateTimeField(auto_now=True) 
+    completed = models.BooleanField(default=False) 
+
+    class Meta: 
+        ordering = ['id']
 
 
-#sale model   
-#purchase model 
 

@@ -3,8 +3,8 @@ import BaseAxios from 'axios';
 import { baseURL } from '../Axios/axios'; 
 
 
-export function getProductList() {
-    return axios.get('product/').then((res) => {
+export function getToDoList() {
+    return axios.get('getTodos/').then((res) => {
         return res
     })
 } 
