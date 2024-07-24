@@ -58,7 +58,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173', 
     'https://zaymapp.vercel.app',  
     'https://tempotoys.shop', 
-    'https://pos-app-stock-management.onrender.com'
+    'https://pos-app-stock-management.onrender.com' 
+    'https://frontend-ashen-nu.vercel.app', 
 ]
 
 MIDDLEWARE = [
