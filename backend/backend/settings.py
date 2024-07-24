@@ -16,7 +16,9 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent 
 
 import os
-import dj_database_url
+import dj_database_url 
+from datetime import timedelta 
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -43,7 +45,14 @@ INSTALLED_APPS = [
     'rest_framework', 
     'product',  
     'corsheaders',
+    'rest_framework_simplejwt',
 ] 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173', 
@@ -121,7 +130,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# media confs. 
+# media confs.  
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=5), 
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=90),
+}
 
 MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/media/'

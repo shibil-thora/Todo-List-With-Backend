@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { CreateToDo, DeleteTask, EditTask, getToDoList, MarkComplete } from '../../ApiServices/services'
 import Sale from '../Sale/Sale'
 import EditModal from '../EditModal/EditModal';
+import Navbar from '../Navbar/Navbar';
 
 function Home() { 
 
@@ -21,7 +22,7 @@ function Home() {
     setNewTask('')  
     CreateToDo(newTask).then((res) => {
       console.log(res.data)
-      setTasks([...tasks, {name:newTask}])
+      setTasks([...tasks, res.data])
     })
   } 
 
@@ -59,6 +60,7 @@ function Home() {
 
   return ( 
     <>  
+    <Navbar />
     {showEditForm && 
     <EditModal editQuery={editQuery} 
     onEditSubmit={EditToDoSubmit} close={setShowEditForm}
@@ -88,8 +90,14 @@ function Home() {
         <li key={task.id} className="flex items-center justify-between bg-indigo-200 p-4 rounded-md mb-2 font-medium">
           <span><i 
           onClick={() => EditToDo(task)}
-          tabIndex={0} className="cursor-pointer text-white fas fa-pencil bg-fuchsia-700 p-2 shadow zoom-hover rounded"></i> &nbsp; {task.name}</span>
-          <div>
+          tabIndex={0} className="cursor-pointer text-white fas fa-pencil bg-fuchsia-700 p-2 shadow zoom-hover rounded"></i> &nbsp; 
+          {!task.completed && <span>{task.name}</span>}
+          {task.completed && <span><strike>{task.name}</strike></span>}
+           
+          </span>
+          <div> 
+
+
             <button
             onClick={
               (e) => {
@@ -105,7 +113,7 @@ function Home() {
             onClick={() => deleteTask(task.id)}
             className="bg-rose-600 zoom-hover hover:bg-rose-500 active:bg-rose-700
              text-white px-2 py-1 rounded-md">
-              <small>Delete <i className="fa fa-close "></i></small>
+              <small>Remove <i className="fa fa-close "></i></small>
               </button>
           </div>
         </li>
