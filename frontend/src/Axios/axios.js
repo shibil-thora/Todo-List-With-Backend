@@ -1,6 +1,6 @@
 import axios from 'axios' 
-export const baseURL = 'http://127.0.0.1:8000'
-export const domainPort = '127.0.0.1:8000'
+export const baseURL = 'https://pos-app-stock-management.onrender.com'
+export const domainPort = 'pos-app-stock-management.onrender.com' 
  
 
 const axiosInstance = axios.create({
