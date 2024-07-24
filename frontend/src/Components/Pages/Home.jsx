@@ -3,6 +3,8 @@ import { CreateToDo, DeleteTask, EditTask, getToDoList, MarkComplete } from '../
 import Sale from '../Sale/Sale'
 import EditModal from '../EditModal/EditModal';
 import Navbar from '../Navbar/Navbar';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Home() { 
 
@@ -10,6 +12,14 @@ function Home() {
   const [newTask, setNewTask] = useState(''); 
   const [editQuery, setEditQuery] = useState({}); 
   const [showEditForm, setShowEditForm] = useState(false); 
+  const state = useSelector(state => state.auth)
+  const navigate = useNavigate(); 
+
+  useEffect(() => {
+    if (!state.user.is_authenticated) {
+      navigate('/login/')
+    }
+  }, [])
 
   useEffect(() => {
     getToDoList().then((res) => {

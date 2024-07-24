@@ -20,7 +20,7 @@ export const authSlice = createSlice({
             state.user.is_authenticated = action.payload.is_authenticated; 
             state.user.is_active = action.payload.is_active;
             state.user.is_superuser = action.payload.is_superuser; 
-        
+            console.log(action.payload); 
         },
         logOut: (state, action) => {
             localStorage.setItem('access', ''); 
