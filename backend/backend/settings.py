@@ -60,7 +60,9 @@ CORS_ALLOWED_ORIGINS = [
     'https://tempotoys.shop', 
     'https://pos-app-stock-management.onrender.com' 
     'https://frontend-ashen-nu.vercel.app', 
-]
+] 
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
