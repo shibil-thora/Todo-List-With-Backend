@@ -1,0 +1,22 @@
+{
+    "name": "Shibil To Do",
+    "short_name": "App",
+    "description": "Your App Description",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "icons": [
+      {
+        "src": "/pwas.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/pwas.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
