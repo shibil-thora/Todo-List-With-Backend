@@ -77,7 +77,7 @@ function Home() {
     setEditQuery={setEditQuery}/> 
     }
     
-    <div className="p-8">
+    <div className="p-8"> 
     <div className="mb-4">
        
        <input 

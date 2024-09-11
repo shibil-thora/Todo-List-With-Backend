@@ -13,7 +13,7 @@ function Navbar() {
     <nav className="bg-sky-950 text-white">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         <div className="flex items-center">
-          <span className="text-xl font-bold ml-2">To Do</span>
+          <span className="text-xl font-bold ml-2">Shibil's To-Do</span>
         </div>
         {/* <div className="hidden md:flex space-x-4">
           <a href="#" className="hover:text-gray-300">Dashboard</a>
