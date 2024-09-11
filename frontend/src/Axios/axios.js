@@ -1,6 +1,7 @@
 import axios from 'axios' 
-export const baseURL = 'https://pos-app-stock-management.onrender.com'
-export const domainPort = 'pos-app-stock-management.onrender.com' 
+ 
+export const baseURL = 'https://todo-list-with-backend-wzvo.onrender.com' 
+export const domainPort = 'todo-list-with-backend-wzvo.onrender.com'
  
 
 const axiosInstance = axios.create({
