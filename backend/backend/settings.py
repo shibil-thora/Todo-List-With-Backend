@@ -58,11 +58,11 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173', 
     'https://zaymapp.vercel.app',  
     'https://tempotoys.shop', 
-    'https://frontend-ashen-nu.vercel.app', 
+    'https://frontend-ashen-nu.vercel.app',
     'https://todo-list-with-backend-wzvo.onrender.com',
 ] 
 
-CORS_ALLOW_ALL_ORIGINS = True
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
