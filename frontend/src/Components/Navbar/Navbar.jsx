@@ -32,7 +32,7 @@ function Navbar() {
       </div> 
 
       {showProfiile && <div className="inset-0 fixed h-full z-20">
-          <div className="md:w-1/6 shadow-xl  w-1/3 bg-red-100 h-52 rounded-md ml-auto mr-5 mt-16 flex flex-col space-y-3">
+          <div className="md:w-2/6 shadow-xl  w-2/3 bg-red-100 h-52 rounded-md ml-auto mr-5 mt-16 flex flex-col space-y-3">
             <div className="close flex justify-between px-2">
               <button className='invisible'>hi</button>
               <button

@@ -1,6 +1,6 @@
 {
     "name": "Shibil To Do",
-    "short_name": "App",
+    "short_name": "To-Do",
     "description": "Your App Description",
     "start_url": ".",
     "display": "standalone",

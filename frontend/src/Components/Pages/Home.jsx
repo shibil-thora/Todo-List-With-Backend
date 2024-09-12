@@ -28,10 +28,8 @@ function Home() {
   }, []) 
 
   function addTask() {
-    console.log('task add')  
     setNewTask('')  
     CreateToDo(newTask).then((res) => {
-      console.log(res.data)
       setTasks([...tasks, res.data])
     })
   } 
@@ -53,7 +51,6 @@ function Home() {
 
   function EditToDo(task) { 
     setEditQuery(task) 
-    console.log(task)
     setShowEditForm(true); 
   } 
 
@@ -78,7 +75,7 @@ function Home() {
     }
     
     <div className="p-8"> 
-    <div className="mb-4">
+    <div className="mb-4 flex justify-between space-x-2">
        
        <input 
        value={newTask}
@@ -94,6 +91,12 @@ function Home() {
          appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
  
        />
+       <button
+            onClick={() => addTask()}
+             className="zoom-hover bg-fuchsia-800 hover:bg-lime-500 active:bg-lime-700
+             text-white px-2 py-1 rounded-md mr-2"> Add
+            </button>
+      
      </div>
      <ul className="list-none p-0">
       {tasks.map((task) => (

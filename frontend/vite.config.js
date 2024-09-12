@@ -11,7 +11,7 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
         name: 'Shibil To Do',
-        short_name: 'App',
+        short_name: 'To-Do',
         description: 'Your App Description',
         theme_color: '#ffffff',
         icons: [
