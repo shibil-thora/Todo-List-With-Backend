@@ -14,6 +14,7 @@ function Home() {
   const [showEditForm, setShowEditForm] = useState(false); 
   const state = useSelector(state => state.auth)
   const navigate = useNavigate(); 
+  const email = state.user.email;
 
   useEffect(() => {
     if (!state.user.is_authenticated) {
@@ -22,16 +23,44 @@ function Home() {
   }, [])
 
   useEffect(() => {
-    getToDoList().then((res) => {
-      setTasks(res.data)
-    })
+    // getToDoList().then((res) => {
+    //   setTasks(res.data)
+    // }) 
+    const tasks = localStorage.getItem(email)
+    const taskArray = getArray(tasks)
+    const newTaskState = []
+    for (let i=0; i<taskArray.length; i++) {
+      if (taskArray[i].length) {
+        newTaskState.push({id: i, ...getTaskObj(taskArray[i])}); 
+      }
+    }
+    console.log(newTaskState)
+    setTasks(newTaskState);
+
   }, []) 
+
+  function getArray(taskStr) { 
+    return taskStr.split('^');
+  }
+
+  function getTaskObj(task) {
+    const singleTaskArray = task?.split('&')
+    if (singleTaskArray) {
+      return {
+        task: singleTaskArray[0], 
+        completed: Boolean(Number(singleTaskArray[1])),
+      }
+    }
+  }
 
   function addTask() {
     setNewTask('')  
-    CreateToDo(newTask).then((res) => {
-      setTasks([...tasks, res.data])
-    })
+    // CreateToDo(newTask).then((res) => {
+    //   setTasks([...tasks, res.data])
+    // }) 
+
+    const tasks = localStorage.getItem(email)
+    localStorage.setItem(email, `${tasks}^${newTask}&0`)
   } 
 
   function doComplete(id) { 
@@ -104,8 +133,8 @@ function Home() {
           <span><i 
           onClick={() => EditToDo(task)}
           tabIndex={0} className="cursor-pointer text-white fas fa-pencil bg-fuchsia-700 p-2 shadow zoom-hover rounded"></i> &nbsp; 
-          {!task.completed && <span>{task.name}</span>}
-          {task.completed && <span><strike>{task.name}</strike></span>}
+          {!task.completed && <span>{task.task}</span>}
+          {task.completed && <span><strike>{task.task}</strike></span>}
            
           </span>
           <div> 
