@@ -53,29 +53,39 @@ function Home() {
     }
   }
 
+  function getStoreString(arrOfObjs) { 
+    let output = ''
+    for (let i=0; i< arrOfObjs.length; i++) {
+      const singleObj = arrOfObjs[i] 
+      const requiredString = `${singleObj.task}&${singleObj.completed ? 1 : 0}` 
+      output += requiredString + '^' 
+    }
+    console.log(output)
+    return output
+  }
+
   function addTask() {
     setNewTask('')  
-    // CreateToDo(newTask).then((res) => {
-    //   setTasks([...tasks, res.data])
-    // }) 
-
     const tasks = localStorage.getItem(email)
-    localStorage.setItem(email, `${tasks}^${newTask}&0`)
+    localStorage.setItem(email, `${tasks}^${newTask}&0`) 
+    setTasks((prev) => [...prev, {id: prev.length, task: newTask, completed: false}])
   } 
 
   function doComplete(id) { 
-    MarkComplete(id).then((res) => { 
       const newTasks = [...tasks] 
       const index = newTasks.findIndex((task) => task.id == id)  
       newTasks[index] = {...newTasks[index], completed:true}
       setTasks(newTasks); 
-    })
+      const storage_str = getStoreString(newTasks); 
+      localStorage.setItem(email, storage_str);
   } 
 
   function deleteTask(id) { 
-    DeleteTask(id).then((res) => {
-      setTasks(tasks.filter(task => task.id != id)); 
-    })
+    const deletFiltered = tasks.filter(task => task.id != id)
+    const storage_str = getStoreString(deletFiltered); 
+    localStorage.setItem(email, storage_str);
+    setTasks(deletFiltered);
+
   } 
 
   function EditToDo(task) { 
@@ -84,13 +94,15 @@ function Home() {
   } 
 
   function EditToDoSubmit() {
-    EditTask(editQuery.id, editQuery.name).then((res) => {
+    
       const newTasks = [...tasks] 
       const index = newTasks.findIndex((task) => task.id == editQuery.id)  
-      newTasks[index] = {...newTasks[index], name:editQuery.name}
+      newTasks[index] = {...newTasks[index], task:editQuery.task}
       setTasks(newTasks);  
+      console.log(newTasks, 'submitted')
+      const storage_str = getStoreString(newTasks); 
+      localStorage.setItem(email, storage_str);
       setShowEditForm(false)
-    })
     
   }
 
@@ -113,7 +125,13 @@ function Home() {
           addTask(); 
         }
        }}
-       onChange={(e) => setNewTask(e.target.value)}
+       onChange={(e) => 
+            { if (!(e.target.value.includes('^') || e.target.value.includes('&'))){
+              setNewTask(e.target.value)
+              }
+              
+            }
+        }
          type="text"
          placeholder={'add task...'}
          className="shadow text-gray-700 bg-slate-200

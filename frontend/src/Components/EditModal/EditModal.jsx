@@ -22,8 +22,8 @@ function EditModal(props) {
                 <h2 className="text-black font-medium mb-1 text-center">Edit</h2>
         <input type="text" 
         required
-        value={props.editQuery.name}
-        onChange={(e) => props.setEditQuery({...props.editQuery, name: e.target.value})}
+        value={props.editQuery.task}
+        onChange={(e) => props.setEditQuery({...props.editQuery, task: e.target.value})}
         className=" px-2 py-2 shadow-md w-full  border border-cyan-500
         bg-white-200 focus:outline-none focus:ring-0 rounded-xl"/>
         <h1 className="text-sm text-red-600 text-center">{error}</h1>
