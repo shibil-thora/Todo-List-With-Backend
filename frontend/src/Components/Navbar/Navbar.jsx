@@ -26,7 +26,7 @@ function Navbar() {
           <button
           onClick={() => setShowProfile(false)}
            className="bg-fuchsia-900 hover:bg-fuchsia-700 text-xl active:bg-fuchsia-800 text-white px-5 py-2 rounded-full">
-            {state.user.email ? state.user.email[0] : '..'}
+            {'P'}
           </button>
         </div>
       </div> 
