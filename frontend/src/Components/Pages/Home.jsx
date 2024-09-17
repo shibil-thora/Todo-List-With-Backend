@@ -15,12 +15,6 @@ function Home() {
   const email = 'nice@gmail.com';
 
   useEffect(() => {
-    if (!state.user.is_authenticated) {
-      navigate('/login/')
-    }
-  }, [])
-
-  useEffect(() => {
     // getToDoList().then((res) => {
     //   setTasks(res.data)
     // }) 
@@ -32,7 +26,7 @@ function Home() {
         newTaskState.push({id: i, ...getTaskObj(taskArray[i])}); 
       }
     }
-    console.log(newTaskState)
+    
     setTasks(newTaskState);
 
   }, []) 
@@ -58,7 +52,7 @@ function Home() {
       const requiredString = `${singleObj.task}&${singleObj.completed ? 1 : 0}` 
       output += requiredString + '^' 
     }
-    console.log(output)
+    
     return output
   }
 
@@ -97,7 +91,7 @@ function Home() {
       const index = newTasks.findIndex((task) => task.id == editQuery.id)  
       newTasks[index] = {...newTasks[index], task:editQuery.task}
       setTasks(newTasks);  
-      console.log(newTasks, 'submitted')
+       
       const storage_str = getStoreString(newTasks); 
       localStorage.setItem(email, storage_str);
       setShowEditForm(false)
