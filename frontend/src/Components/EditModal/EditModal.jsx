@@ -8,7 +8,7 @@ function EditModal(props) {
     }
   return (
     <div className="inset-0 fixed h-full flex flex-col justify-center bg-black bg-opacity-60 z-20">
-        <div className="flex flex-col w-1/3 h-1/3 mx-auto bg-gray-200  shadow-lg rounded-xl">
+        <div className="flex flex-col sm:w-1/3 h-1/3 mx-auto bg-gray-200  shadow-lg rounded-xl">
           <div className=" bg-sky-950 flex justify-between flex-grow text-center rounded-t-xl">
             <button></button>
           <button 

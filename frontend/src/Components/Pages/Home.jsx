@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { CreateToDo, DeleteTask, EditTask, getToDoList, MarkComplete } from '../../ApiServices/services'
-import Sale from '../Sale/Sale'
 import EditModal from '../EditModal/EditModal';
 import Navbar from '../Navbar/Navbar';
 import { useSelector } from 'react-redux';
@@ -14,7 +12,7 @@ function Home() {
   const [showEditForm, setShowEditForm] = useState(false); 
   const state = useSelector(state => state.auth)
   const navigate = useNavigate(); 
-  const email = state.user.email;
+  const email = 'nice@gmail.com';
 
   useEffect(() => {
     if (!state.user.is_authenticated) {
@@ -29,8 +27,8 @@ function Home() {
     const tasks = localStorage.getItem(email)
     const taskArray = getArray(tasks)
     const newTaskState = []
-    for (let i=0; i<taskArray.length; i++) {
-      if (taskArray[i].length) {
+    for (let i=0; i<taskArray?.length; i++) {
+      if (taskArray[i]?.length) {
         newTaskState.push({id: i, ...getTaskObj(taskArray[i])}); 
       }
     }
@@ -40,7 +38,7 @@ function Home() {
   }, []) 
 
   function getArray(taskStr) { 
-    return taskStr.split('^');
+    return taskStr?.split('^');
   }
 
   function getTaskObj(task) {
@@ -55,7 +53,7 @@ function Home() {
 
   function getStoreString(arrOfObjs) { 
     let output = ''
-    for (let i=0; i< arrOfObjs.length; i++) {
+    for (let i=0; i< arrOfObjs?.length; i++) {
       const singleObj = arrOfObjs[i] 
       const requiredString = `${singleObj.task}&${singleObj.completed ? 1 : 0}` 
       output += requiredString + '^' 
@@ -68,7 +66,7 @@ function Home() {
     setNewTask('')  
     const tasks = localStorage.getItem(email)
     localStorage.setItem(email, `${tasks}^${newTask}&0`) 
-    setTasks((prev) => [...prev, {id: prev.length, task: newTask, completed: false}])
+    setTasks((prev) => [...prev, {id: prev?.length, task: newTask, completed: false}])
   } 
 
   function doComplete(id) { 
@@ -146,7 +144,9 @@ function Home() {
       
      </div>
      <ul className="list-none p-0">
-      {tasks.map((task) => (
+      {tasks
+      .filter((task) => task.task != 'null')
+      .map((task) => (
         <li key={task.id} className="flex items-center justify-between bg-indigo-200 p-4 rounded-md mb-2 font-medium">
           <span><i 
           onClick={() => EditToDo(task)}
