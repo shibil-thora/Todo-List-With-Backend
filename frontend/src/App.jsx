@@ -7,6 +7,7 @@ import Home from './Components/Pages/Home'
 import {} from 'react-router-dom'
 import { Route, Routes } from 'react-router-dom'
 import Login from './Components/Pages/Login'
+import MQTT from './Components/Pages/MQTT'
 
 function App() {
    
@@ -15,6 +16,7 @@ function App() {
     <>
       <Routes>
         <Route exact path='/' element={<Home />}/>
+        <Route exact path='/mqtt' element={<MQTT />}/>
         <Route exact path='login/' element={<Login />}/>
       </Routes>
     </>
