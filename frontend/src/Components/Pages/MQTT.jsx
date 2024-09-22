@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react' 
 import mqtt from 'mqtt'
 import { emqxURI } from '../../utils/emqx';
+import { useNavigate } from 'react-router-dom';
 
 function MQTT() {
     const [message, setMessage] = useState('');
     const [receivedMessages, setReceivedMessages] = useState([]);
     const TOPIC = 'python/mqtt' 
-    const ip = emqxURI; 
+    const ip = emqxURI;  
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         const client = mqtt.connect(`ws://${ip}:8083/mqtt`); 
@@ -34,6 +36,7 @@ function MQTT() {
     }
 
   return (
+    <>
     <div className="font-bold text-gray-200  w-full flex h-screen">
         <div className="mx-auto my-auto">
 
@@ -58,6 +61,15 @@ function MQTT() {
 
         </div>
     </div>
+    <div className="flex justify-center">
+    <button
+    onClick={() => navigate('/')}
+    className="bg-gray-600 zoom-hover mb-5 hover:bg-gray-500 active:bg-gray-700
+    text-white px-2 py-1 rounded-md">
+    <small>Home</small>
+    </button>
+    </div>
+    </>
   )
 }
 
