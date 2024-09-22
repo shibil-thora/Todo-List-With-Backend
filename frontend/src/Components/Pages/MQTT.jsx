@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react' 
 import mqtt from 'mqtt'
+import { emqxURI } from '../../utils/emqx';
 
 function MQTT() {
     const [message, setMessage] = useState('');
     const [receivedMessages, setReceivedMessages] = useState([]);
-    const TOPIC = 'python/mqtt'
+    const TOPIC = 'python/mqtt' 
+    const ip = emqxURI; 
 
     useEffect(() => {
-        const client = mqtt.connect('ws://13.201.77.33:8083/mqtt'); 
+        const client = mqtt.connect(`ws://${ip}:8083/mqtt`); 
 
         client.on('connect', () => {
             console.log('Connected to MQTT Broker');
@@ -24,8 +26,9 @@ function MQTT() {
 
     }, []) 
 
-    function sendMessage () {
-        const client = mqtt.connect('ws://13.201.77.33:8083/mqtt');  
+    function sendMessage () { 
+        console.log('send function worked')
+        const client = mqtt.connect(`ws://${ip}:8083/mqtt`);  
         client.publish(TOPIC, message) 
         setMessage('')
     }
