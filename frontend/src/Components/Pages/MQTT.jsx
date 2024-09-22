@@ -11,7 +11,7 @@ function MQTT() {
     const navigate = useNavigate(); 
 
     useEffect(() => {
-        const client = mqtt.connect(`ws://${ip}:8083/mqtt`); 
+        const client = mqtt.connect(`wss://${ip}:8084/mqtt`); 
 
         client.on('connect', () => {
             console.log('Connected to MQTT Broker');
@@ -30,7 +30,7 @@ function MQTT() {
 
     function sendMessage () { 
         console.log('send function worked')
-        const client = mqtt.connect(`ws://${ip}:8083/mqtt`);  
+        const client = mqtt.connect(`wss://${ip}:8084/mqtt`);  
         client.publish(TOPIC, message) 
         setMessage('')
     }
