@@ -176,14 +176,14 @@ function Home() {
       ))}
     </ul>
     </div> 
-    {/* <div className="flex justify-center">
+    <div className="flex justify-center">
     <button
     onClick={() => navigate('/mqtt/')}
     className="bg-gray-600 zoom-hover hover:bg-gray-500 active:bg-gray-700
     text-white px-2 py-1 rounded-md">
     <small>MQTT</small>
     </button>
-    </div> */}
+    </div> 
     </>
   )
 }
