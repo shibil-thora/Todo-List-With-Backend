@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react' 
 import mqtt from 'mqtt'
-import { emqxURI } from '../../utils/emqx';
+import { awsPublicIp, emqxURI } from '../../utils/emqx';
 import { useNavigate } from 'react-router-dom';
 
 function MQTT() {
     const [message, setMessage] = useState('');
     const [receivedMessages, setReceivedMessages] = useState([]);
     const TOPIC = 'python/mqtt' 
-    const ip = emqxURI;  
-    const navigate = useNavigate(); 
+    const ip = awsPublicIp;  
+    const navigate = useNavigate();  
+    const connectURL = `ws://${ip}:8083/mqtt`
 
     useEffect(() => {
-        const client = mqtt.connect(`wss://${ip}:8084/mqtt`); 
+        const client = mqtt.connect(connectURL); 
 
         client.on('connect', () => {
             console.log('Connected to MQTT Broker');
@@ -30,7 +31,7 @@ function MQTT() {
 
     function sendMessage () { 
         console.log('send function worked')
-        const client = mqtt.connect(`wss://${ip}:8084/mqtt`);  
+        const client = mqtt.connect(connectURL);  
         client.publish(TOPIC, message) 
         setMessage('')
     }
@@ -41,7 +42,7 @@ function MQTT() {
         <div className="mx-auto my-auto">
 
         <div>
-            <h1>Public Chat (MQTT)</h1>
+            <h1>MQTT Dashboard</h1>
             <input
             type="text" 
             className="text-black font-normal p-4 rounded xl"
@@ -50,8 +51,8 @@ function MQTT() {
             />
             <button 
             className="bg-lime-400 p-4 rounded-xl mx-2 text-black hover:bg-lime-500 active:bg-lime-600"
-            onClick={sendMessage}>chat</button>
-            <h2>Received Messages: </h2>
+            onClick={sendMessage}>Send Message</button>
+            <h2>Received Messages</h2>
             <ul>
             {receivedMessages.map((msg, index) => (
                 <li className="bg-gray-200 text-gray-200 w-1/2 font-semibold
