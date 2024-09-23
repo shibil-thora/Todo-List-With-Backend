@@ -41,7 +41,7 @@ function MQTT() {
         <div className="mx-auto my-auto">
 
         <div>
-            <h1>MQTT Dashboard</h1>
+            <h1>Public Chat (MQTT)</h1>
             <input
             type="text" 
             className="text-black font-normal p-4 rounded xl"
@@ -50,11 +50,13 @@ function MQTT() {
             />
             <button 
             className="bg-lime-400 p-4 rounded-xl mx-2 text-black hover:bg-lime-500 active:bg-lime-600"
-            onClick={sendMessage}>Send Message</button>
-            <h2>Received Messages</h2>
+            onClick={sendMessage}>chat</button>
+            <h2>Received Messages: </h2>
             <ul>
             {receivedMessages.map((msg, index) => (
-                <li key={index}>{msg}</li>
+                <li className="bg-gray-200 text-gray-200 w-1/2 font-semibold
+                rounded-md text-center bg-opacity-20 mt-2
+                " key={index}>{msg}</li>
             ))}
             </ul>
         </div>
