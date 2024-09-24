@@ -7,9 +7,9 @@ function MQTT() {
     const [message, setMessage] = useState('');
     const [receivedMessages, setReceivedMessages] = useState([]);
     const TOPIC = 'test/topic' 
-    const ip = emqxURI;  
+    const ip = shibilIP;  
     const navigate = useNavigate();  
-    const connectURL = `wss://${ip}:8084/mqtt`
+    const connectURL = `ws://${ip}:8085/mqtt`
 
     useEffect(() => {
         const client = mqtt.connect(connectURL); 
