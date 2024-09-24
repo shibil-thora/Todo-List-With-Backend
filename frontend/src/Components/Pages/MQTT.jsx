@@ -9,7 +9,7 @@ function MQTT() {
     const TOPIC = 'test/topic' 
     const ip = emqxURI;  
     const navigate = useNavigate();  
-    const connectURL = `ws://${ip}:8083/mqtt`
+    const connectURL = `wss://${ip}:8083/mqtt`
 
     useEffect(() => {
         const client = mqtt.connect(connectURL); 
