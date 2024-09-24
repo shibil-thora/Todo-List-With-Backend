@@ -6,10 +6,10 @@ import { useNavigate } from 'react-router-dom';
 function MQTT() {
     const [message, setMessage] = useState('');
     const [receivedMessages, setReceivedMessages] = useState([]);
-    const TOPIC = 'python/mqtt' 
-    const ip = awsPublicIp;  
+    const TOPIC = 'test/topic' 
+    const ip = emqxURI;  
     const navigate = useNavigate();  
-    const connectURL = `ws://${ip}:8083/mqtt`
+    const connectURL = `ws://${ip}:8085/mqtt`
 
     useEffect(() => {
         const client = mqtt.connect(connectURL); 
