@@ -6,13 +6,20 @@ import { useNavigate } from 'react-router-dom';
 function MQTT() {
     const [message, setMessage] = useState('');
     const [receivedMessages, setReceivedMessages] = useState([]);
-    const TOPIC = 'test/topic' 
+    const TOPIC = 'common/topic' 
     const ip = shibilIP;  
     const navigate = useNavigate();  
-    const connectURL = `ws://${ip}:8085/mqtt`
+    const connectURL = `mqtt://${ip}:8083`
+    const options = {
+        username: import.meta.env.VITE_MQTT_USERNAME, 
+        password: import.meta.env.VITE_MQTT_PASSWORD,
+    }
 
     useEffect(() => {
-        const client = mqtt.connect(connectURL); 
+        const client = mqtt.connect(connectURL, {
+            username: options.username, 
+            password: options.password
+        }); 
 
         client.on('connect', () => {
             console.log('Connected to MQTT Broker');
@@ -31,7 +38,10 @@ function MQTT() {
 
     function sendMessage () { 
         console.log('send function worked')
-        const client = mqtt.connect(connectURL);  
+        const client = mqtt.connect(connectURL, {
+            username: options.username, 
+            password: options.password
+        });  
         client.publish(TOPIC, message) 
         setMessage('')
     }
@@ -47,7 +57,12 @@ function MQTT() {
             type="text" 
             className="text-black font-normal p-4 rounded xl"
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => setMessage(e.target.value)} 
+            onKeyDown={(e) => {
+                if(e.key == 'Enter') {
+                    sendMessage()
+                }
+            }}
             />
             <button 
             className="bg-lime-400 p-4 rounded-xl mx-2 text-black hover:bg-lime-500 active:bg-lime-600"
