@@ -165,7 +165,7 @@ function Home() {
               {!task.completed && <small>Complete <i className="fa fa-check "></i></small>}
               {task.completed && <strike><small className=""> Completed</small></strike>}
             </button>
-            <button
+            <button disabled={true}
             onClick={() => deleteTask(task.id)}
             className="bg-rose-600 zoom-hover hover:bg-rose-500 active:bg-rose-700
              text-white px-2 py-1 rounded-md">
